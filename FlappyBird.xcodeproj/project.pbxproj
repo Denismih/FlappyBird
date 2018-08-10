@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		841B5A672118992100361F82 /* pipe2.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B5A622118992000361F82 /* pipe2.png */; };
+		841B5A682118992100361F82 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B5A632118992000361F82 /* bg.png */; };
+		841B5A692118992100361F82 /* flappy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B5A642118992100361F82 /* flappy1.png */; };
+		841B5A6A2118992100361F82 /* flappy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B5A652118992100361F82 /* flappy2.png */; };
+		841B5A6B2118992100361F82 /* pipe1.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B5A662118992100361F82 /* pipe1.png */; };
 		841D752F211886D70026A6CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D752E211886D70026A6CA /* AppDelegate.swift */; };
 		841D7531211886D70026A6CA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 841D7530211886D70026A6CA /* GameScene.sks */; };
 		841D7533211886D70026A6CA /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 841D7532211886D70026A6CA /* Actions.sks */; };
@@ -18,6 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		841B5A622118992000361F82 /* pipe2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe2.png; sourceTree = "<group>"; };
+		841B5A632118992000361F82 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		841B5A642118992100361F82 /* flappy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flappy1.png; sourceTree = "<group>"; };
+		841B5A652118992100361F82 /* flappy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flappy2.png; sourceTree = "<group>"; };
+		841B5A662118992100361F82 /* pipe1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe1.png; sourceTree = "<group>"; };
 		841D752B211886D70026A6CA /* FlappyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlappyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		841D752E211886D70026A6CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		841D7530211886D70026A6CA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -66,6 +76,11 @@
 				841D7534211886D70026A6CA /* GameScene.swift */,
 				841D7536211886D70026A6CA /* GameViewController.swift */,
 				841D7538211886D70026A6CA /* Main.storyboard */,
+				841B5A632118992000361F82 /* bg.png */,
+				841B5A642118992100361F82 /* flappy1.png */,
+				841B5A652118992100361F82 /* flappy2.png */,
+				841B5A662118992100361F82 /* pipe1.png */,
+				841B5A622118992000361F82 /* pipe2.png */,
 				841D753B211886D80026A6CA /* Assets.xcassets */,
 				841D753D211886D80026A6CA /* LaunchScreen.storyboard */,
 				841D7540211886D80026A6CA /* Info.plist */,
@@ -132,10 +147,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				841D753A211886D70026A6CA /* Main.storyboard in Resources */,
+				841B5A6B2118992100361F82 /* pipe1.png in Resources */,
 				841D7531211886D70026A6CA /* GameScene.sks in Resources */,
+				841B5A672118992100361F82 /* pipe2.png in Resources */,
+				841B5A692118992100361F82 /* flappy1.png in Resources */,
 				841D753C211886D80026A6CA /* Assets.xcassets in Resources */,
+				841B5A682118992100361F82 /* bg.png in Resources */,
 				841D753F211886D80026A6CA /* LaunchScreen.storyboard in Resources */,
 				841D7533211886D70026A6CA /* Actions.sks in Resources */,
+				841B5A6A2118992100361F82 /* flappy2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +313,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UX58MRWBW6;
 				INFOPLIST_FILE = FlappyBird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -310,6 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UX58MRWBW6;
 				INFOPLIST_FILE = FlappyBird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
