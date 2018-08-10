@@ -15,15 +15,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bg = SKSpriteNode()
     var topPipe = SKSpriteNode()
     var botPipe = SKSpriteNode()
+    var scoreLabel = SKLabelNode()
+    var gameOverLabel = SKLabelNode()
+    var timer = Timer()
     var gameOver = false
+    var score = 0
+    
     
     enum ColliderType:UInt32 {
         case Bird = 1
         case Object = 2
+        case Gap = 4
     }
     
     @objc func makePips() {
-        let gapHight = bird.size.height * 4
+        let gapHight = bird.size.height * 5
         let moveAmount = arc4random_uniform(UInt32(self.frame.height / 2))
         let pipeOffset = CGFloat(moveAmount) - self.frame.height / 4
         let pipsMove = SKAction.move(by: CGVector(dx: -2 * self.size.width, dy: 0), duration: TimeInterval        (self.size.width / 100))
@@ -50,14 +56,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         botPipe.physicsBody!.categoryBitMask = ColliderType.Object.rawValue
         botPipe.physicsBody!.contactTestBitMask = ColliderType.Object.rawValue
         botPipe.run(pipsMove)
-        
         self.addChild(botPipe)
+        
+        let gap = SKNode()
+        gap.position = CGPoint(x: self.frame.midX + self.size.width, y: self.frame.midY+pipeOffset)
+        gap.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: botPipeTexture.size().width, height: gapHight))
+        gap.physicsBody?.isDynamic = false
+        gap.physicsBody!.collisionBitMask = ColliderType.Gap.rawValue
+        gap.physicsBody!.categoryBitMask = ColliderType.Gap.rawValue
+        gap.physicsBody!.contactTestBitMask = ColliderType.Bird.rawValue
+        gap.run(pipsMove)
+        self.addChild(gap)
+        
+        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        
-        self.speed = 0
-        gameOver = true
+        if gameOver == false {
+        if contact.bodyA.categoryBitMask == ColliderType.Gap.rawValue || contact.bodyB.categoryBitMask == ColliderType.Gap.rawValue {
+            score += 1
+            scoreLabel.text = String(score)
+        } else {
+            self.speed = 0
+            gameOver = true
+            gameOverLabel.fontName = "Helvetica"
+            gameOverLabel.fontSize = 30
+            gameOverLabel.fontColor = UIColor.red
+            gameOverLabel.text = "Game Over! Tap to play again."
+            gameOverLabel.position = CGPoint(x: self.frame.midX, y: self.size.height / 2 - 270)
+            gameOverLabel.zPosition = 4
+            self.addChild(gameOverLabel)
+            timer.invalidate()
+        }
+        }
     }
     
     
@@ -65,7 +96,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.contactDelegate = self
         
-        _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.makePips), userInfo: nil, repeats: true)
+        startGame()
+        
+        
+        
+    }
+    
+    func startGame() {
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.makePips), userInfo: nil, repeats: true)
         
         let bgTexture = SKTexture(imageNamed: "bg.png")
         let moveBg = SKAction.move(by: CGVector(dx: -bgTexture.size().width, dy: 0), duration: 7)
@@ -111,11 +149,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ground.physicsBody?.contactTestBitMask = ColliderType.Object.rawValue
         self.addChild(ground)
         
-        
+        scoreLabel.fontName = "Helvetica"
+        scoreLabel.fontSize = 60
+        scoreLabel.text = "0"
+        scoreLabel.position = CGPoint(x: self.frame.midX, y: self.size.height / 2 - 70)
+        scoreLabel.zPosition = 4
+        self.addChild(scoreLabel)
         
     }
-    
-    
     
     
     
@@ -123,8 +164,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if gameOver == false {
             bird.physicsBody!.isDynamic = true
             bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-            bird.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 100))
+            bird.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 50))
+        } else {
+            gameOver = false
+            score = 0
+            self.speed = 1
+            self.removeAllChildren()
+            startGame()
         }
+        
     }
     
     
